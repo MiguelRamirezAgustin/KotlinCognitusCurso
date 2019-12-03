@@ -7,4 +7,5 @@
     <dimen name="dimenOlvideContrasenia">12sp</dimen>
     <dimen name="dimenIniciar">14sp</dimen>
     <dimen name="dimenRegistrar">14sp</dimen>
+    <dimen name="dimenTexGeneral">17sp</dimen>
 </resources>
