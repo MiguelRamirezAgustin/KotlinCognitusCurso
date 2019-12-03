@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">CognitusProyect</string>
+
+    <string name="txtBienvenido">Bienvenido</string>
+    <string name="txtCompleteDetalles">Por favor complete toso los detalles</string>
+    <string name="txtUsuario">Usuario</string>
+    <string name="txtContrasenia">Contraseña</string>
+    <string name="txtIniciar">Iniciar</string>
+    <string name="txtOlvideContrasenia">Olvidé contraseña</string>
+    <string name="txtRegistrar">Registrar</string>
+    <string name="txtCerrarSesion">Cerrar Sesión</string>
+    <string name="txtHoraEntrad">Hora de entrada</string>
+    <string name="txtConfirmar">Confirmar</string>
+    <string name="txtFirma">Firma</string>
+    <string name="txtCorreo">Correo</string>
+    <string name="txtRecuperar">Recuperar</string>
+    <string name="txtContraseniaActual">Contraseña actual</string>
+    <string name="txtNuevoContrasenia">Nuevo contraseña</string>
+    <string name="txtConfirmarContrasenia">Confirmar contraseña</string>
+    <string name="txtGuardadCambios">Guardar Cambios</string>
+    <string name="txtAceptoTerminos">Acepto términos y condiciones</string>
+    <string name="txtGuardar">Guardar</string>
+    <string name="txtTerminos">Terminar </string>
+    <string name="txtHorasTrabajadas">Horas trabajadas</string>
+    <string name="txtNota">Nota</string>
+    //Menu
+    <string name="txtCheckIn">Check In</string>
+    <string name="txtNotificaciones">Notificaciones</string>
+    <string name="txtPerfil">Perfil</string>
+    <string name="txtEncuesta">Encuesta</string>
+    <string name="txtTareas">Tareas</string>
+</resources>
