@@ -2,7 +2,7 @@
     <string name="app_name">CognitusProyect</string>
 
     <string name="txtBienvenido">Bienvenido</string>
-    <string name="txtCompleteDetalles">Por favor complete toso los detalles</string>
+    <string name="txtCompleteDetalles">Por favor complete todos los detalles</string>
     <string name="txtUsuario">Usuario</string>
     <string name="txtContrasenia">Contraseña</string>
     <string name="txtIniciar">Iniciar</string>
@@ -24,6 +24,7 @@
     <string name="txtHorasTrabajadas">Horas trabajadas</string>
     <string name="txtNota">Nota</string>
     <string name="validaEmail">Debe usar un correo valido</string>
+    <string name="Message">No puede estar vacio</string>
 
 
     //Menu

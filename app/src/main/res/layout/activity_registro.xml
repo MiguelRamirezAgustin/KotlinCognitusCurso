@@ -1,9 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout>
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".RegistroActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--LinearLayout contenedor -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/nombre">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/txtUsuario"
+                android:drawableLeft="@drawable/usuario3"
+                android:backgroundTint="@android:color/transparent"
+                android:textColorHint="@color/colorGris"
+                android:textSize="@dimen/dimenTexGeneral"
+                android:textColor="@color/colorPrimary"
+                android:singleLine="true"
+                android:paddingLeft="16dp"
+                android:maxLength="25"
+                android:drawablePadding="8dp"
+                app:validateMinLength="@{4}"
+                app:validateMaxLength="@{10}"
+                validateEmpty="@{true}"
+                app:validateEmptyMessage="@{@string/Message}"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/nombre"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/txtUsuario"
+                android:drawableLeft="@drawable/arroba"
+                android:backgroundTint="@android:color/transparent"
+                android:textColorHint="@color/colorGris"
+                android:textSize="@dimen/dimenTexGeneral"
+                android:textColor="@color/colorPrimary"
+                android:singleLine="true"
+                android:paddingLeft="16dp"
+                android:maxLength="25"
+                android:drawablePadding="8dp"
+                app:validateMinLength="@{8}"
+                app:validateMaxLength="@{25}"
+                validateEmpty="@{true}"
+                app:validateType='@{"email"}'
+                app:validateTypeMessage="@{@string/validaEmail}"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/nombre"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/eTpassword"
+                android:layout_width="0dp"
+                android:layout_weight=".70"
+                android:layout_height="match_parent"
+                android:hint="@string/txtContrasenia"
+                android:backgroundTint="@android:color/transparent"
+                android:textColorHint="@color/colorGris"
+                android:textSize="@dimen/dimenTexGeneral"
+                android:textColor="@color/colorPrimary"
+                android:singleLine="true"
+                android:maxLength="10"
+                android:inputType="textPassword"
+                app:validateMinLength="@{4}"
+                app:validateMaxLength="@{10}"
+                validateEmpty="@{true}"
+                android:paddingLeft="30dp"/>
+
+            <ImageView
+                android:id="@+id/imgMostrarPaswword"
+                android:layout_width="0dp"
+                android:layout_weight=".20"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:src="@drawable/eye_solid2"
+                android:onClick="@{(v) -> clickListener.onClick(v)}"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/nombre"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/eTpasswordConfir"
+                android:layout_width="0dp"
+                android:layout_weight=".70"
+                android:layout_height="match_parent"
+                android:hint="@string/txtConfirmarContrasenia"
+                android:backgroundTint="@android:color/transparent"
+                android:textColorHint="@color/colorGris"
+                android:textSize="@dimen/dimenTexGeneral"
+                android:textColor="@color/colorPrimary"
+                android:maxLength="10"
+                android:singleLine="true"
+                android:inputType="textPassword"
+                app:validateMinLength="@{4}"
+                app:validateMaxLength="@{10}"
+                validateEmpty="@{true}"
+                android:paddingLeft="30dp"/>
+
+            <ImageView
+                android:id="@+id/imgMostrarPaswwordConfir"
+                android:layout_width="0dp"
+                android:layout_weight=".20"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:src="@drawable/eye_solid2"
+                android:onClick="@{(v) -> clickListener.onClick(v)}"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--Linear termini y condicion-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="120dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:buttonTint="@color/colorAccent"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtAceptoTerminos"
+                android:textColor="@color/colorPrimary"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnRegistrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/registro"
+            android:textColor="@color/colorBlanco"
+            android:text="@string/txtRegistrar"
+            android:textAllCaps="false"
+            android:layout_marginTop="30dp"
+            android:onClick="@{(v) -> clickListener.onClick(v)}"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</layout>

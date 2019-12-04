@@ -21,9 +21,9 @@ class MainActivity : AppCompatActivity(), Validator.ValidationListener {
         //setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
-        binding.tVRegistrar.setOnClickListener {
+       /* binding.tVRegistrar.setOnClickListener {
             Toast.makeText(this, "Texto ", Toast.LENGTH_LONG).show()
-        }
+        }*/
 
 
         val validator: Validator = Validator(binding)
@@ -44,6 +44,10 @@ class MainActivity : AppCompatActivity(), Validator.ValidationListener {
                 }
                 binding.tVRegistrar.id -> {
                     val intent = Intent(this@MainActivity, RegistroActivity::class.java)
+                    startActivity(intent)
+                }
+                binding.tVOlvidoPasssword.id->{
+                    val intent  = Intent(this@MainActivity, OlvidePasswordActivity::class.java)
                     startActivity(intent)
                 }
             }

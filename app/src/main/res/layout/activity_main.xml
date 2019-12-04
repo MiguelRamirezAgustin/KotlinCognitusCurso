@@ -83,6 +83,7 @@
                    android:textColor="@color/colorBlanco"
                    android:singleLine="true"
                    android:paddingLeft="16dp"
+                   android:maxLength="25"
                    android:drawablePadding="8dp"
                    app:validateMinLength="@{8}"
                    app:validateMaxLength="@{25}"
@@ -111,6 +112,7 @@
                    android:textColor="@color/colorBlanco"
                    android:singleLine="true"
                    android:inputType="textPassword"
+                   android:maxLength="10"
                    app:validateMinLength="@{4}"
                    app:validateMaxLength="@{10}"
                    validateEmpty="@{true}"
@@ -128,12 +130,14 @@
            </LinearLayout>
 
           <TextView
+              android:id="@+id/tVOlvidoPasssword"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="right"
               android:text="@string/txtOlvideContrasenia"
               android:textColor="@color/colorBlanco"
-              android:layout_marginTop="20dp"/>
+              android:layout_marginTop="20dp"
+              android:onClick="@{(v) -> clickListener.onClick(v)}"/>
 
            <Button
                android:id="@+id/btnIniciar"
@@ -157,7 +161,8 @@
                android:layout_gravity="center"
                android:layout_marginTop="45dp"
                android:textColor="@color/colorBlanco"
-               android:textSize="@dimen/dimenRegistrar"/>
+               android:textSize="@dimen/dimenRegistrar"
+               android:onClick="@{(v) -> clickListener.onClick(v)}"/>
 
        </LinearLayout>
 
