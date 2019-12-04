@@ -23,6 +23,9 @@
     <string name="txtTerminos">Terminar </string>
     <string name="txtHorasTrabajadas">Horas trabajadas</string>
     <string name="txtNota">Nota</string>
+    <string name="validaEmail">Debe usar un correo valido</string>
+
+
     //Menu
     <string name="txtCheckIn">Check In</string>
     <string name="txtNotificaciones">Notificaciones</string>

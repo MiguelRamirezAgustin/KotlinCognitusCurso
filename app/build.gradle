@@ -40,7 +40,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 
-
     //DataBinding
     implementation 'com.github.Ilhasoft:data-binding-validator:2.0.0'
 }

@@ -2,6 +2,7 @@
 
     <dimen name="dimenBienvenido">36sp</dimen>
     <dimen name="dimenDetalles">16sp</dimen>
+    <dimen name="dimenMenu">20sp</dimen>
     <dimen name="dimenUsuario">14sp</dimen>
     <dimen name="dimenContrasenia">34sp</dimen>
     <dimen name="dimenOlvideContrasenia">12sp</dimen>
