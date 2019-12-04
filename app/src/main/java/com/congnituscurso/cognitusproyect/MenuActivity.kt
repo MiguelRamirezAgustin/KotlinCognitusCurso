@@ -1,5 +1,6 @@
 package com.congnituscurso.cognitusproyect
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -27,13 +28,17 @@ class MenuActivity : AppCompatActivity(), Validator.ValidationListener  {
                   Toast.makeText(this, "Cerrar sesion", Toast.LENGTH_SHORT).show()
               }
               binding.reLcheckIn.id -> {
-                  Toast.makeText(this, "Check in", Toast.LENGTH_SHORT).show()
+                  //Toast.makeText(this, "Check in", Toast.LENGTH_SHORT).show()
+                  val inteten = Intent(this, CheckInActivity::class.java)
+                  startActivity(inteten)
               }
               binding.reLNotificaciones.id -> {
                   Toast.makeText(this, "Notificacion", Toast.LENGTH_SHORT).show()
               }
               binding.reLPerfil.id -> {
-                  Toast.makeText(this, "Perfil", Toast.LENGTH_SHORT).show()
+                  //Toast.makeText(this, "Perfil", Toast.LENGTH_SHORT).show()
+                  val inteten = Intent(this, PerfilActivity::class.java)
+                  startActivity(inteten)
               }
               binding.reLEncuesta.id -> {
                   Toast.makeText(this, "Encuesta", Toast.LENGTH_SHORT).show()

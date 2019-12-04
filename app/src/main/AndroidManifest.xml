@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
+
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +25,10 @@
         <activity android:name=".RegistroActivity"
                   android:parentActivityName=".MainActivity" />
         <activity android:name=".OlvidePasswordActivity"
-                  android:parentActivityName=".MainActivity"/>
+                  android:parentActivityName=".MainActivity" />
+        <activity android:name=".PerfilActivity"
+                  android:parentActivityName=".MenuActivity"/>
+        <activity android:name=".CheckInActivity" />
     </application>
 
 </manifest>
