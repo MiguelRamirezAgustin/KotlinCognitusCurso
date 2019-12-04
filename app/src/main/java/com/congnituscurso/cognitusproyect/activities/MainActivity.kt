@@ -52,8 +52,7 @@ class MainActivity : AppCompatActivity(), Validator.ValidationListener {
                         // Log.i("TAG", "Parama--  " + em + " " + ps)
                         val testValue: String = "100|" + em + "|" + ps
                         //Log.i("TAG", "Parama--base  " + testValue)
-                        var encodeLogin =
-                            Base64.encodeToString(testValue.toByteArray(), Base64.DEFAULT)
+                        var encodeLogin = Base64.encodeToString(testValue.toByteArray(), Base64.DEFAULT)
                         //Log.i("TAG", "base64  " + encodeLogin)
                         val call =loginRetrofit().create(APIService::class.java).loginUser(encodeLogin).execute()
                         val result = call.body() as UsuarioResponse

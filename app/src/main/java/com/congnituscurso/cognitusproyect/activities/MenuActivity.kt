@@ -1,9 +1,11 @@
 package com.congnituscurso.cognitusproyect.activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
 import com.congnituscurso.cognitusproyect.R
@@ -27,7 +29,23 @@ class MenuActivity : AppCompatActivity(), Validator.ValidationListener  {
         binding.setClickListener {
           when(it!!.id){
               binding.btnCerrarSesion.id->{
-                  Toast.makeText(this, "Cerrar sesion", Toast.LENGTH_SHORT).show()
+                  //Toast.makeText(this, "Cerrar sesion", Toast.LENGTH_SHORT).show()
+                  val alertBuiler = AlertDialog.Builder(this)
+                  alertBuiler.setTitle("Alerta")
+                  alertBuiler.setMessage("Decea cerrar sesión? ")
+                  alertBuiler.setNegativeButton("No"){dialog, which ->
+
+                  }
+                  alertBuiler.setPositiveButton("Si"){dialog, which ->
+                      val shareActionProvider= getSharedPreferences("my_aplicacion_binding",Context.MODE_PRIVATE)
+                      val editor = shareActionProvider.edit()
+                      editor.putString("usr_id","" )
+                      editor.commit()
+                      val intent = Intent(this, MainActivity::class.java)
+                      startActivity(intent)
+                  }
+                  val dialog = alertBuiler.create()
+                  dialog.show()
               }
               binding.reLcheckIn.id -> {
                   //Toast.makeText(this, "Check in", Toast.LENGTH_SHORT).show()
