@@ -1,4 +1,4 @@
-package com.congnituscurso.cognitusproyect
+package com.congnituscurso.cognitusproyect.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,11 +7,14 @@ import android.widget.Toast
 import com.congnituscurso.cognitusproyect.databinding.ActivityPerfilBinding
 import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
+import com.congnituscurso.cognitusproyect.R
 
 class PerfilActivity : AppCompatActivity(), Validator.ValidationListener {
 
     private val binding by lazy {
-        DataBindingUtil.setContentView<ActivityPerfilBinding>(this, R.layout.activity_perfil)
+        DataBindingUtil.setContentView<ActivityPerfilBinding>(this,
+            R.layout.activity_perfil
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

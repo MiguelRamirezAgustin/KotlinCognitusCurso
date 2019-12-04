@@ -33,4 +33,7 @@
     <string name="txtPerfil">Perfil</string>
     <string name="txtEncuesta">Encuesta</string>
     <string name="txtTareas">Tareas</string>
+
+    //services
+    <string name="urlBase">http://35.155.161.8:8080/WSExample/</string>
 </resources>

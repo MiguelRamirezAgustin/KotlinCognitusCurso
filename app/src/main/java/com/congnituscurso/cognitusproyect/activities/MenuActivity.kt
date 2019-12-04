@@ -1,4 +1,4 @@
-package com.congnituscurso.cognitusproyect
+package com.congnituscurso.cognitusproyect.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,13 +6,15 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
-import com.congnituscurso.cognitusproyect.databinding.ActivityMainBinding
+import com.congnituscurso.cognitusproyect.R
 import com.congnituscurso.cognitusproyect.databinding.ActivityMenuBinding
 
 class MenuActivity : AppCompatActivity(), Validator.ValidationListener  {
 
     private val binding by lazy {
-        DataBindingUtil.setContentView<ActivityMenuBinding>(this, R.layout.activity_menu)
+        DataBindingUtil.setContentView<ActivityMenuBinding>(this,
+            R.layout.activity_menu
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

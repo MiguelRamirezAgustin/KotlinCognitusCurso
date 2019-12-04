@@ -1,4 +1,4 @@
-package com.congnituscurso.cognitusproyect
+package com.congnituscurso.cognitusproyect.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,13 +6,15 @@ import android.text.method.PasswordTransformationMethod
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
-import com.congnituscurso.cognitusproyect.databinding.ActivityMenuBinding
+import com.congnituscurso.cognitusproyect.R
 import com.congnituscurso.cognitusproyect.databinding.ActivityRegistroBinding
 
 class RegistroActivity : AppCompatActivity(), Validator.ValidationListener  {
 
     private val binding by lazy {
-        DataBindingUtil.setContentView<ActivityRegistroBinding>(this, R.layout.activity_registro)
+        DataBindingUtil.setContentView<ActivityRegistroBinding>(this,
+            R.layout.activity_registro
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo4"
     android:gravity="center"
-    tools:context=".Splash">
+    tools:context=".activities.Splash">
 
     <ImageView
         android:layout_width="wrap_content"

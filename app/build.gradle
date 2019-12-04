@@ -42,4 +42,9 @@ dependencies {
 
     //DataBinding
     implementation 'com.github.Ilhasoft:data-binding-validator:2.0.0'
+
+    //Retrofit consumo de servico
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation 'org.jetbrains.anko:anko-common:0.9'
 }

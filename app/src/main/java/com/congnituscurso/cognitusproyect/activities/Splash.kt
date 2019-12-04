@@ -1,9 +1,10 @@
-package com.congnituscurso.cognitusproyect
+package com.congnituscurso.cognitusproyect.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.congnituscurso.cognitusproyect.R
 
 class Splash : AppCompatActivity(), Runnable {
 

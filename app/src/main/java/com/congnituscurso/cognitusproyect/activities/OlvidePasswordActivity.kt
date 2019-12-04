@@ -1,17 +1,19 @@
-package com.congnituscurso.cognitusproyect
+package com.congnituscurso.cognitusproyect.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
+import com.congnituscurso.cognitusproyect.R
 import com.congnituscurso.cognitusproyect.databinding.ActivityOlvidePasswordBinding
-import com.congnituscurso.cognitusproyect.databinding.ActivityRegistroBinding
 
 class OlvidePasswordActivity : AppCompatActivity(), Validator.ValidationListener {
 
     private val binding by lazy {
-        DataBindingUtil.setContentView<ActivityOlvidePasswordBinding>(this, R.layout.activity_olvide_password)
+        DataBindingUtil.setContentView<ActivityOlvidePasswordBinding>(this,
+            R.layout.activity_olvide_password
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

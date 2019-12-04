@@ -1,7 +1,8 @@
-package com.congnituscurso.cognitusproyect
+package com.congnituscurso.cognitusproyect.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.congnituscurso.cognitusproyect.R
 
 class CheckInActivity : AppCompatActivity() {
 

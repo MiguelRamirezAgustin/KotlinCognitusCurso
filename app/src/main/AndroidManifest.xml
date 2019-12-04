@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.congnituscurso.cognitusproyect">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,22 +14,22 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
 
-        <activity android:name=".Splash">
+        <activity android:name=".activities.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".MenuActivity" />
-        <activity android:name=".RegistroActivity"
-                  android:parentActivityName=".MainActivity" />
-        <activity android:name=".OlvidePasswordActivity"
-                  android:parentActivityName=".MainActivity" />
-        <activity android:name=".PerfilActivity"
-                  android:parentActivityName=".MenuActivity"/>
-        <activity android:name=".CheckInActivity" />
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.MenuActivity" />
+        <activity android:name=".activities.RegistroActivity"
+                  android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.OlvidePasswordActivity"
+                  android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.PerfilActivity"
+                  android:parentActivityName=".activities.MenuActivity"/>
+        <activity android:name=".activities.CheckInActivity" />
     </application>
 
 </manifest>
