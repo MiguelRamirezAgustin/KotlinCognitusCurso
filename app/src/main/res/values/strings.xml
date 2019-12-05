@@ -25,6 +25,7 @@
     <string name="txtNota">Nota</string>
     <string name="validaEmail">Debe usar un correo valido</string>
     <string name="Message">No puede estar vacio</string>
+    <string name="txtAlerCamaraGaleria">Seleccione opción para cambiar imagen de perfil</string>
 
 
     //Menu

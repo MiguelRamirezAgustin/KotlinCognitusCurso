@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,15 +18,17 @@
 
 
     <LinearLayout
+        android:id="@+id/LinearHora"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/nombre"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="15dp"
+        android:onClick="@{(v) -> clickListener.onClick(v)}">
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/eTHoraEntrada"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/txtHoraEntrad"
@@ -29,20 +40,55 @@
             android:singleLine="true"
             android:paddingLeft="16dp"
             android:maxLength="25"
-            android:drawablePadding="8dp"/>
+            android:editable="false"
+            android:drawablePadding="8dp"
+            android:onClick="@{(v) -> clickListener.onClick(v)}"/>
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
         android:background="@drawable/rectangulo_mensaje"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="17dp"
+        android:orientation="vertical"
         android:layout_gravity="center">
 
-        <EditText
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tVFirma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtFirma"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="20dp"
+                android:visibility="visible"
+                android:textColor="@color/colorGris"
+                android:textSize="@dimen/dimenDetalles"/>
+
+            <ImageView
+                android:id="@+id/imgBorrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_delete"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentRight="true"
+                android:visibility="invisible"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:onClick="@{(v) -> clickListener.onClick(v)}"/>
+        </RelativeLayout>
+
+
+        <com.github.gcacace.signaturepad.views.SignaturePad
+            android:id="@+id/signaturePad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:penColor="@android:color/black" />
 
     </LinearLayout>
 
@@ -55,9 +101,11 @@
         android:textColor="@color/colorBlanco"
         android:text="@string/txtConfirmar"
         android:textAllCaps="false"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="17dp"
         android:onClick="@{(v) -> clickListener.onClick(v)}"/>
 
 </LinearLayout>
+
+</layout>

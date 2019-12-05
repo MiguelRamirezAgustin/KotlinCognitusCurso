@@ -43,6 +43,7 @@ class MenuActivity : AppCompatActivity(), Validator.ValidationListener  {
                       editor.commit()
                       val intent = Intent(this, MainActivity::class.java)
                       startActivity(intent)
+                      finish()
                   }
                   val dialog = alertBuiler.create()
                   dialog.show()

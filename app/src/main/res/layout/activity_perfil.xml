@@ -16,19 +16,24 @@
     android:orientation="vertical"
     tools:context=".activities.PerfilActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
 
-        <ImageView
+
+        <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/imgPerfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/invalid_name2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
+            android:src="@drawable/invalid_name2"
+            app:civ_border_color="#045b8c"
+            app:civ_border_width="1dp"
+            app:civ_shadow="true"
+            app:civ_shadow_radius="1"
+            app:civ_shadow_color="#1B80FA"
             android:onClick="@{(v) -> clickListener.onClick(v)}"/>
 
         <TextView
@@ -36,7 +41,7 @@
             android:layout_height="match_parent"
             android:text="Nombre"
             android:gravity="center"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="10dp"
             android:textColor="@color/colorAccent"
             android:fontFamily="sans-serif-black"
             android:textSize="@dimen/dimenDetalles"/>
@@ -50,7 +55,7 @@
         android:orientation="vertical"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="15dp">
 
 
         <LinearLayout

@@ -4,6 +4,9 @@
     package="com.congnituscurso.cognitusproyect">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -29,7 +32,8 @@
                   android:parentActivityName=".activities.MainActivity" />
         <activity android:name=".activities.PerfilActivity"
                   android:parentActivityName=".activities.MenuActivity"/>
-        <activity android:name=".activities.CheckInActivity" />
+        <activity android:name=".activities.CheckInActivity"
+                  android:parentActivityName=".activities.MenuActivity"/>
     </application>
 
 </manifest>
