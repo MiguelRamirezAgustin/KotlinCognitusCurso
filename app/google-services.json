@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "998847546347",
+    "firebase_url": "https://pushkotlinproyecto.firebaseio.com",
+    "project_id": "pushkotlinproyecto",
+    "storage_bucket": "pushkotlinproyecto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998847546347:android:bb3f4b852daf5d1ee20fae",
+        "android_client_info": {
+          "package_name": "com.congnituscurso.cognitusproyect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998847546347-icn176cb6oh4t1edkt46os78emvtgs01.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnQHvYaeKUkfq5UauXkaFaz2jCU79na8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998847546347-icn176cb6oh4t1edkt46os78emvtgs01.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

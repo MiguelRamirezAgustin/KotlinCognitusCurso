@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.congnituscurso.cognitusproyect">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -17,6 +17,14 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
 
+        <!-- [END firebase_service] 01 -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
         <activity android:name=".activities.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,14 +34,37 @@
         </activity>
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.MenuActivity" />
-        <activity android:name=".activities.RegistroActivity"
-                  android:parentActivityName=".activities.MainActivity" />
-        <activity android:name=".activities.OlvidePasswordActivity"
-                  android:parentActivityName=".activities.MainActivity" />
-        <activity android:name=".activities.PerfilActivity"
-                  android:parentActivityName=".activities.MenuActivity"/>
-        <activity android:name=".activities.CheckInActivity"
-                  android:parentActivityName=".activities.MenuActivity"/>
+        <activity
+            android:name=".activities.RegistroActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.OlvidePasswordActivity"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity
+            android:name=".activities.PerfilActivity"
+            android:parentActivityName=".activities.MenuActivity" />
+        <activity
+            android:name=".activities.CheckInActivity"
+            android:parentActivityName=".activities.MenuActivity" />
+        <activity
+            android:name=".activities.NotificacionActivity"
+            android:parentActivityName=".activities.MenuActivity"/>
+
+
+
+        <!-- [END firebase_service] 02 -->
+        <service android:name=".model.push.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service> <!-- [END firebase_service] 03 -->
+        <service
+            android:name=".model.push.MyJobService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
