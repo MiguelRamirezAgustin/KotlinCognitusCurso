@@ -48,9 +48,10 @@
             android:parentActivityName=".activities.MenuActivity" />
         <activity
             android:name=".activities.NotificacionActivity"
+            android:parentActivityName=".activities.MenuActivity" />
+        <activity
+            android:name=".activities.TareasActivity"
             android:parentActivityName=".activities.MenuActivity"/>
-
-
 
         <!-- [END firebase_service] 02 -->
         <service android:name=".model.push.MyFirebaseMessagingService">

@@ -6,6 +6,7 @@
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
+
     </data>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -31,7 +32,7 @@
             android:background="@drawable/nombre">
 
             <EditText
-                android:id="@+id/name"
+                android:id="@+id/eTname"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/txtUsuario"
@@ -44,8 +45,8 @@
                 android:paddingLeft="16dp"
                 android:maxLength="25"
                 android:drawablePadding="8dp"
-                app:validateMinLength="@{4}"
-                app:validateMaxLength="@{10}"
+                app:validateMinLength="@{3}"
+                app:validateMaxLength="@{20}"
                 validateEmpty="@{true}"
                 app:validateEmptyMessage="@{@string/Message}"/>
         </LinearLayout>
@@ -58,7 +59,7 @@
             android:layout_marginTop="10dp">
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/eTemail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/txtUsuario"
@@ -172,6 +173,7 @@
             android:orientation="horizontal">
 
             <CheckBox
+                android:id="@+id/checkTerminos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"

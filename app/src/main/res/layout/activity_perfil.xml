@@ -37,9 +37,9 @@
             android:onClick="@{(v) -> clickListener.onClick(v)}"/>
 
         <TextView
+            android:id="@+id/tVName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Nombre"
             android:gravity="center"
             android:layout_marginTop="10dp"
             android:textColor="@color/colorAccent"
@@ -65,7 +65,7 @@
             android:layout_marginTop="10dp">
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/eTemail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/txtUsuario"

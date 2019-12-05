@@ -21,8 +21,11 @@ import androidx.core.content.ContextCompat
 import com.congnituscurso.cognitusproyect.databinding.ActivityPerfilBinding
 import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
+import com.bumptech.glide.Glide
 import com.congnituscurso.cognitusproyect.R
 import kotlinx.android.synthetic.main.activity_perfil.*
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -59,10 +62,21 @@ class PerfilActivity : AppCompatActivity(), Validator.ValidationListener {
         }
 
         //recupera id de sharedPreferences
+       // intent.putExtra("usr_id", usrIds)
+        //intent.putExtra("usr_nombre", usrNombre)
+        //intent.putExtra("usr_email", usrEmail)
+        //intent.putExtra("usr_Img", usrImg)
         val sharedPreferences=getSharedPreferences("my_aplicacion_binding",Context.MODE_PRIVATE)
-        val usrEmail = sharedPreferences.getString("usr_name","")
+        val usrEmail = sharedPreferences.getString("usr_email","")
+        val usrName = sharedPreferences.getString("usr_name","")
+        val usrImg = sharedPreferences.getString("usr_Img","")
 
-        binding.email.setText(usrEmail)
+        binding.eTemail.setText(usrEmail)
+        binding.tVName.setText(usrName)
+        val requesManager = Glide.with(this)
+        val requestBuilder = requesManager.load(getString(R.string.urlBase)+usrImg)
+        Log.i("TAG", "Url img"+ requestBuilder)
+        requestBuilder.into(binding.imgPerfil)
 
         val validator: Validator = Validator(binding)
         validator.setValidationListener(this)
@@ -247,6 +261,14 @@ class PerfilActivity : AppCompatActivity(), Validator.ValidationListener {
             e.printStackTrace()
         }
         return  ""
+    }
+
+
+    fun perfilRetrofit():Retrofit{
+        return Retrofit.Builder()
+            .baseUrl(getString(R.string.urlBase))
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 
 

@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity(), Validator.ValidationListener {
                         val em = binding.eTemail.text.toString()
                         val ps = binding.eTpassword.text.toString()
                         // Log.i("TAG", "Parama--  " + em + " " + ps)
+                        //100|ramirez@gmail.com|12345
                         val testValue: String = "100|" + em + "|" + ps
                         //Log.i("TAG", "Parama--base  " + testValue)
                         var encodeLogin = Base64.encodeToString(testValue.toByteArray(), Base64.DEFAULT)
@@ -64,8 +65,11 @@ class MainActivity : AppCompatActivity(), Validator.ValidationListener {
                                 builder.setMessage("" + result.mensajeLogin)
                                 builder.setPositiveButton("Si") { dialog, which ->
 
-                                    val usrIds = result.usuarioLogin.cli_idLogin
-                                    val usrNombre = result.usuarioLogin.emp_idLogin
+                                    //variables para sharedPreferences
+                                    val usrIds = result.usuarioLogin.usr_idLogin
+                                    val usrNombre = result.usuarioLogin.usr_nombreLogin
+                                    val usrEmail = result.usuarioLogin.usr_emailLogin
+                                    val usrImg = result.usuarioLogin.usr_rutafotoLogin
 
                                     Log.d("UserPreferenses ", usrIds + " " + usrNombre)
                                     //Guardar datos de sesion
@@ -73,12 +77,12 @@ class MainActivity : AppCompatActivity(), Validator.ValidationListener {
                                     var editor = sharedPreferences.edit()
                                     editor.putString("usr_id", usrIds)
                                     editor.putString("usr_name", usrNombre)
+                                    editor.putString("usr_email", usrEmail)
+                                    editor.putString("usr_Img", usrImg)
                                     editor.commit()
 
                                     val intent =
                                         Intent(applicationContext, MenuActivity::class.java)
-                                    intent.putExtra("usr_id", usrIds)
-                                    intent.putExtra("usr_nombre", usrNombre)
                                     startActivity(intent)
 
                                 }

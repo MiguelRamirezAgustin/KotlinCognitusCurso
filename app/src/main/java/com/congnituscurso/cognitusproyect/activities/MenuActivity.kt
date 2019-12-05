@@ -37,9 +37,9 @@ class MenuActivity : AppCompatActivity(), Validator.ValidationListener  {
 
                   }
                   alertBuiler.setPositiveButton("Si"){dialog, which ->
-                      val shareActionProvider= getSharedPreferences("my_aplicacion_binding",Context.MODE_PRIVATE)
-                      val editor = shareActionProvider.edit()
-                      editor.putString("usr_id","" )
+                      val shareActionProvider = getSharedPreferences("my_aplicacion_binding", Context.MODE_PRIVATE)
+                      var editor = shareActionProvider.edit()
+                      editor.putString("usr_id", "")
                       editor.commit()
                       val intent = Intent(this, MainActivity::class.java)
                       startActivity(intent)
@@ -54,7 +54,9 @@ class MenuActivity : AppCompatActivity(), Validator.ValidationListener  {
                   startActivity(inteten)
               }
               binding.reLNotificaciones.id -> {
-                  Toast.makeText(this, "Notificacion", Toast.LENGTH_SHORT).show()
+                  //Toast.makeText(this, "Notificacion", Toast.LENGTH_SHORT).show()
+                  val intent = Intent(this, NotificacionActivity::class.java)
+                  startActivity(intent)
               }
               binding.reLPerfil.id -> {
                   //Toast.makeText(this, "Perfil", Toast.LENGTH_SHORT).show()
@@ -65,7 +67,9 @@ class MenuActivity : AppCompatActivity(), Validator.ValidationListener  {
                   Toast.makeText(this, "Encuesta", Toast.LENGTH_SHORT).show()
               }
               binding.reLTareas.id -> {
-                  Toast.makeText(this, "Tareas", Toast.LENGTH_SHORT).show()
+                  //Toast.makeText(this, "Tareas", Toast.LENGTH_SHORT).show()
+                  val inatent = Intent(this, TareasActivity::class.java)
+                  startActivity(inatent)
               }
           }
 
