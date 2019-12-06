@@ -42,7 +42,9 @@
             android:maxLength="25"
             android:editable="false"
             android:drawablePadding="8dp"
-            android:onClick="@{(v) -> clickListener.onClick(v)}"/>
+            android:onClick="@{(v) -> clickListener.onClick(v)}"
+            validateEmpty="@{true}"
+            app:validateEmptyMessage="@{@string/emptyMessage}"/>
     </LinearLayout>
 
 
@@ -73,8 +75,8 @@
             <ImageView
                 android:id="@+id/imgBorrar"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_delete"
+                android:layout_height="40dp"
+                android:src="@drawable/basura"
                 android:layout_alignParentLeft="false"
                 android:layout_alignParentRight="true"
                 android:visibility="invisible"

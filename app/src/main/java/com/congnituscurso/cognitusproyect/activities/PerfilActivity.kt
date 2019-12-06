@@ -62,10 +62,6 @@ class PerfilActivity : AppCompatActivity(), Validator.ValidationListener {
         }
 
         //recupera id de sharedPreferences
-       // intent.putExtra("usr_id", usrIds)
-        //intent.putExtra("usr_nombre", usrNombre)
-        //intent.putExtra("usr_email", usrEmail)
-        //intent.putExtra("usr_Img", usrImg)
         val sharedPreferences=getSharedPreferences("my_aplicacion_binding",Context.MODE_PRIVATE)
         val usrEmail = sharedPreferences.getString("usr_email","")
         val usrName = sharedPreferences.getString("usr_name","")

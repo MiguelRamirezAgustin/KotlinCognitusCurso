@@ -1,39 +1,49 @@
 package com.congnituscurso.cognitusproyect.activities
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.util.Base64
 import android.util.Log
 import android.view.View
+import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
 import com.congnituscurso.cognitusproyect.R
+import com.congnituscurso.cognitusproyect.dao.APIService
 import com.congnituscurso.cognitusproyect.databinding.ActivityCheckInBinding
-import com.congnituscurso.cognitusproyect.databinding.ActivityMainBinding
+import com.congnituscurso.cognitusproyect.model.CheckInResponse
 import com.github.gcacace.signaturepad.views.SignaturePad
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.util.*
+import java.text.DateFormat
 
 
 class CheckInActivity : AppCompatActivity(), Validator.ValidationListener {
-
-    private val CERO = "0"
-    private val DOS_PUNTOS = ":"
-
-    //Calendario para obtener fecha & hora
-    var c = java.util.Calendar.getInstance()
-
-    //Variables para obtener la hora hora
-    var hora = c.get(Calendar.HOUR_OF_DAY)
-    var minuto = c.get(Calendar.MINUTE)
-
+    private var mediaPath: String? = null
+    private var postPath: String? = null
+    var idUs :String?=null
     private val binding by lazy {
         DataBindingUtil.setContentView<ActivityCheckInBinding>(
-            this, R.layout.activity_check_in
+            this, com.congnituscurso.cognitusproyect.R.layout.activity_check_in
         )
     }
 
@@ -54,42 +64,37 @@ class CheckInActivity : AppCompatActivity(), Validator.ValidationListener {
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
 
+        //recuperar Id
+        val idUser = intent.getStringExtra("ID")
+        idUs = idUser
+        Log.i("TAG", "Id User Check In "+idUs)
+
         //permisos
         revisarPermisos()
 
         val validator: Validator = Validator(binding)
         validator.setValidationListener(this)
+        //id_usuario|hora|checkInApp
 
         binding.setClickListener {
             when(it!!.id){
                 binding.eTHoraEntrada.id->{
-                    val recogerHora = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-                            //Formateo el hora obtenido: antepone el 0 si son menores de 10
-                            val horaFormateada =
-                                if (hourOfDay < 10) CERO + hourOfDay else hourOfDay.toString()
-                            //Formateo el minuto obtenido: antepone el 0 si son menores de 10
-                            val minutoFormateado =
-                                if (minute < 10) CERO + minute else minute.toString()
-                            //Obtengo el valor a.m. o p.m., dependiendo de la selección del usuario
-                            val AM_PM: String
-                            if (hourOfDay < 12) {
-                                AM_PM = "a.m."
-                            } else {
-                                AM_PM = "p.m."
-                            }
-                            //Muestro la hora con el formato deseado
-                           binding.eTHoraEntrada.setText("$horaFormateada$DOS_PUNTOS$minutoFormateado $AM_PM")
-                        },
-                        //Estos valores deben ir en ese orden
-                        //Al colocar en false se muestra en formato 12 horas y true en formato 24 horas
-                        //Pero el sistema devuelve la hora en formato 24 horas
-                        hora, minuto, false
-                    )
-                    recogerHora.show()
+                    /*val dates = Date()
+                    val dateFormats = android.text.format.DateFormat.getDateFormat(applicationContext)
+                    Log.i("TAG", "Time: " + dateFormats.format(dates)*/
+
+                    val date = Date()
+                    val stringDate = DateFormat.getTimeInstance().format(date)
+                    binding.eTHoraEntrada.setText(stringDate)
+
                 }
                 binding.imgBorrar.id->{
                     binding.signaturePad.clear()
                     binding.tVFirma.visibility = View.VISIBLE
+                    postPath=""
+                }
+                binding.btnConfirmar.id->{
+                        validator!!.toValidate()
                 }
 
             }
@@ -98,11 +103,7 @@ class CheckInActivity : AppCompatActivity(), Validator.ValidationListener {
         binding.signaturePad.setOnSignedListener(object :SignaturePad.OnSignedListener{
             override fun onStartSigning() {
                 /*cuando comienza a dibujar
-                 Toast.makeText(
-                     applicationContext,
-                     "Comineza firma",
-                     Toast.LENGTH_SHORT
-                 ).show()*/
+                 Toast.makeText(applicationContext,"Comineza firma", Toast.LENGTH_SHORT).show()*/
                 binding.tVFirma.visibility = View.INVISIBLE
                 binding.imgBorrar.visibility = View.INVISIBLE
             }
@@ -115,21 +116,140 @@ class CheckInActivity : AppCompatActivity(), Validator.ValidationListener {
             }
 
             override fun onSigned() {
-                //Al termianr la firnma
-                //mSaveButton.isEnabled = true
-                //mClearButton.isEnabled= true
                 binding.imgBorrar.visibility = View.VISIBLE
+                guardarFirma()
             }
 
         })
     }
 
-
     override fun onValidationError() {
+
     }
 
     override fun onValidationSuccess() {
+        if (binding.signaturePad.isEmpty()){
+            Toast.makeText(this@CheckInActivity,"Es necesario realizar la firma", Toast.LENGTH_LONG).show()
+        }else{
+            doAsync {
+                val base:String= "200|"+idUs+"|"+binding.eTHoraEntrada.text.toString()+"|checkInApp"
+                val encodebase = Base64.encodeToString(base.toByteArray(), Base64.DEFAULT)
+                var photoFile: File? = null
+                photoFile = File(postPath)
+
+                val partes = ArrayList<MultipartBody.Part>()
+                partes.add(MultipartBody.Part.createFormData("word", encodebase ))
+                partes.add(MultipartBody.Part.createFormData("archivo", photoFile?.name, RequestBody.create(MediaType.parse("images/*"),photoFile)))
+
+                val call = checkInRetrofit().create(APIService::class.java).checkIn(partes)?.execute()
+                val result = call.body() as CheckInResponse
+                Log.i("TAG", "ResulCheck--"+result.validoCheck)
+                  uiThread {
+                      if (result.validoCheck == "1"){
+                          val alerDialog = AlertDialog.Builder(this@CheckInActivity)
+                          alerDialog.setTitle("Alerta")
+                          alerDialog.setMessage("Registro: "+result.mensajeCheck +"\n\n" + "Hora de registro: "+result.registro_ck.ck_tiemporeal)
+                          alerDialog.setPositiveButton("Si"){dialog, which ->
+                         
+                              binding.eTHoraEntrada.setText("")
+                              binding.signaturePad.clear()
+                          }
+                          val dialog = alerDialog.create()
+                          dialog.show()
+                      }else if(result.validoCheck =="0"){
+                          val alerDialog = AlertDialog.Builder(this@CheckInActivity)
+                          alerDialog.setTitle("Alerta")
+                          alerDialog.setMessage(""+result.mensajeCheck)
+                          alerDialog.setPositiveButton("Si"){dialog, which ->
+
+                          }
+                          val dialog = alerDialog.create()
+                          dialog.show()
+                      }
+                  }
+
+            }
+        }
     }
+
+    fun checkInRetrofit():Retrofit{
+        return Retrofit.Builder()
+            .baseUrl(getString(R.string.urlBase))
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    fun File.crearMultiparte(): RequestBody {
+        var type: String? = null
+        val extension = MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(this).toString())
+        if (extension != null) {
+            type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension)
+        }
+        Log.d("ImagenUtil", "uri: " + Uri.fromFile(this))
+        Log.d("ImagenUtil", "type: " + type!!)
+        return RequestBody.create(
+            MediaType.parse("image/*"), this
+        )
+    }
+
+    fun guardarFirma(){
+        val signatureBitmap: Bitmap = binding.signaturePad.transparentSignatureBitmap
+        if(addJPGSignatureToGalerry(signatureBitmap)){
+            /*Toast.makeText(
+                this,
+                "Firma Guardada",
+                Toast.LENGTH_SHORT
+            ).show()*/
+            //signaturePad.clear()
+        }else{
+            Toast.makeText(
+                this,
+                "No se puede almacenar la firma",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        Log.d("TAG", "Ruta-- "+addJPGSignatureToGalerry(signatureBitmap))
+    }
+
+    //Guardar en galeria
+    fun addJPGSignatureToGalerry(signature: Bitmap):Boolean{
+        var result = false
+        try {
+            val path = Environment.getExternalStorageDirectory().toString() + "/empleado"
+            Log.d("Files", "path $path")
+            val fileFirm = File(path)
+            fileFirm.mkdir()
+            val photo =
+                File(fileFirm, "Firma.png")
+            Log.d("FilesFirma", "path $photo")
+            postPath = photo.toString()
+            Log.i("TAG", "post-----guardada----- "+postPath)
+            saveBitmapToPNG(signature, photo)
+            result = true
+        }catch (e: IOException){
+            e.printStackTrace()
+        }
+        return result
+    }
+
+    @Throws(IOException::class)
+    fun saveBitmapToPNG(bitmap: Bitmap, photo:File){
+        var out: FileOutputStream? = null
+        try {
+            out = FileOutputStream(photo)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
+        }catch (e:Exception){
+            e.printStackTrace()
+        }finally {
+            try {
+                out?.close()
+            }catch (e:IOException){
+                e.printStackTrace()
+            }
+        }
+    }
+
+
 
     //Permisos
     fun revisarPermisos(){

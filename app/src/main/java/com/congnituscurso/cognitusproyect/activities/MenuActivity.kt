@@ -13,6 +13,8 @@ import com.congnituscurso.cognitusproyect.databinding.ActivityMenuBinding
 
 class MenuActivity : AppCompatActivity(), Validator.ValidationListener  {
 
+    var idUsr:String? = null
+
     private val binding by lazy {
         DataBindingUtil.setContentView<ActivityMenuBinding>(this,
             R.layout.activity_menu
@@ -24,6 +26,10 @@ class MenuActivity : AppCompatActivity(), Validator.ValidationListener  {
         //setContentView(R.layout.activity_menu)
         supportActionBar?.hide()
 
+        //recupera id de sharedPreferences
+        val sharedPreferences=getSharedPreferences("my_aplicacion_binding",Context.MODE_PRIVATE)
+        val usrId = sharedPreferences.getString("usr_id","")
+        idUsr = usrId
         val validator: Validator = Validator(binding)
         validator.setValidationListener(this)
         binding.setClickListener {
@@ -51,6 +57,7 @@ class MenuActivity : AppCompatActivity(), Validator.ValidationListener  {
               binding.reLcheckIn.id -> {
                   //Toast.makeText(this, "Check in", Toast.LENGTH_SHORT).show()
                   val inteten = Intent(this, CheckInActivity::class.java)
+                  inteten.putExtra("ID",idUsr)
                   startActivity(inteten)
               }
               binding.reLNotificaciones.id -> {

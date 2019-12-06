@@ -28,6 +28,11 @@
     <string name="txtAlerCamaraGaleria">Seleccione opción para cambiar imagen de perfil</string>
 
 
+    //databinding
+    <string name="firmaValidar">Es necesario realizar la firma</string>
+    <string name="emptyMessage">Es necesarios realizar check in para la hora de entrada</string>
+
+
     //Menu
     <string name="txtCheckIn">Check In</string>
     <string name="txtNotificaciones">Notificaciones</string>
