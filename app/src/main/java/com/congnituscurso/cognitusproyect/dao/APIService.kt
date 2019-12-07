@@ -1,8 +1,5 @@
 package com.congnituscurso.cognitusproyect.dao
-import com.congnituscurso.cognitusproyect.model.CheckInResponse
-import com.congnituscurso.cognitusproyect.model.PasswordResponse
-import com.congnituscurso.cognitusproyect.model.RegisterResponse
-import com.congnituscurso.cognitusproyect.model.UsuarioResponse
+import com.congnituscurso.cognitusproyect.model.*
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -21,5 +18,11 @@ interface APIService {
     @Multipart
     @POST("GeneralData")
     fun checkIn(@Part partMap: List<MultipartBody.Part> ):Call<CheckInResponse>
-    //fun registroPerfil(@Part partMap: List<MultipartBody.Part> ): Call<ServerResponse>
+
+    @POST("GeneralData")
+    fun terminos(@Query("word")paramTerminos:String):Call<TerminosResponse>
+
+    @Multipart
+    @POST("GeneralData")
+    fun actualzarPerfil(@Part partMaps: List<MultipartBody.Part>):Call<PerfilResponse>
 }

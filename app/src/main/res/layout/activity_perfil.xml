@@ -88,38 +88,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:background="@drawable/nombre"
-            android:gravity="center"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="15dp">
 
             <EditText
-                android:id="@+id/eTpasswordActual"
-                android:layout_width="0dp"
-                android:layout_weight=".70"
+                android:id="@+id/eTnameUsuario"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/txtContraseniaActual"
+                android:hint="@string/txtUsuario"
+                android:drawableLeft="@drawable/usuario3"
                 android:backgroundTint="@android:color/transparent"
                 android:textColorHint="@color/colorGris"
                 android:textSize="@dimen/dimenTexGeneral"
                 android:textColor="@color/colorPrimary"
                 android:singleLine="true"
-                android:maxLength="10"
-                android:inputType="textPassword"
-                app:validateMinLength="@{4}"
-                app:validateMaxLength="@{10}"
+                android:paddingLeft="16dp"
+                android:maxLength="25"
+                android:drawablePadding="8dp"
+                app:validateMinLength="@{3}"
+                app:validateMaxLength="@{20}"
                 validateEmpty="@{true}"
-                android:paddingLeft="30dp"/>
-
-            <ImageView
-                android:id="@+id/imgMostrarPaswwordActual"
-                android:layout_width="0dp"
-                android:layout_weight=".20"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:src="@drawable/eye_solid2"
-                android:onClick="@{(v) -> clickListener.onClick(v)}"/>
-
+                app:validateEmptyMessage="@{@string/Message}"/>
         </LinearLayout>
 
         <LinearLayout

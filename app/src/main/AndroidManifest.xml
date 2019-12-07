@@ -51,14 +51,20 @@
             android:parentActivityName=".activities.MenuActivity" />
         <activity
             android:name=".activities.TareasActivity"
-            android:parentActivityName=".activities.MenuActivity"/>
+            android:parentActivityName=".activities.MenuActivity" />
+
+        <activity
+            android:name=".activities.WebViewTerminosActivity"
+            android:parentActivityName=".activities.RegistroActivity"/>
 
         <!-- [END firebase_service] 02 -->
         <service android:name=".model.push.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service> <!-- [END firebase_service] 03 -->
+        </service>
+
+        <!-- [END firebase_service] 03 -->
         <service
             android:name=".model.push.MyJobService"
             android:exported="false">

@@ -7,13 +7,16 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.MediaScannerConnection
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.text.method.PasswordTransformationMethod
+import android.util.Base64
 import android.util.Log
+import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
@@ -23,7 +26,14 @@ import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
 import com.bumptech.glide.Glide
 import com.congnituscurso.cognitusproyect.R
+import com.congnituscurso.cognitusproyect.dao.APIService
+import com.congnituscurso.cognitusproyect.model.PerfilResponse
 import kotlinx.android.synthetic.main.activity_perfil.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.ByteArrayOutputStream
@@ -41,6 +51,7 @@ class PerfilActivity : AppCompatActivity(), Validator.ValidationListener {
     private var mediaPath: String? = null
     private var postPath: String? = null
     private val IMAGE_DIRECTORY = "/demosImg"
+    var idUser:String? = null
 
     private val binding by lazy {
         DataBindingUtil.setContentView<ActivityPerfilBinding>(
@@ -66,27 +77,22 @@ class PerfilActivity : AppCompatActivity(), Validator.ValidationListener {
         val usrEmail = sharedPreferences.getString("usr_email","")
         val usrName = sharedPreferences.getString("usr_name","")
         val usrImg = sharedPreferences.getString("usr_Img","")
+        idUser = sharedPreferences.getString("usr_id","")
+
+        Log.i("TAG", "idUsuario--- "+ idUser +" correo "+usrEmail)
 
         binding.eTemail.setText(usrEmail)
         binding.tVName.setText(usrName)
+        binding.eTnameUsuario.setText(usrName)
         val requesManager = Glide.with(this)
         val requestBuilder = requesManager.load(getString(R.string.urlBase)+usrImg)
-        Log.i("TAG", "Url img"+ requestBuilder)
+        Log.i("TAG", "Url img_mostrar_perfil "+ requestBuilder)
         requestBuilder.into(binding.imgPerfil)
 
         val validator: Validator = Validator(binding)
         validator.setValidationListener(this)
         binding.setClickListener {
             when (it!!.id) {
-                binding.imgMostrarPaswwordActual.id -> {
-                    if (binding.eTpasswordActual.transformationMethod is PasswordTransformationMethod) {
-                        binding.eTpasswordActual.transformationMethod = null
-                    } else {
-                        binding.eTpasswordActual.transformationMethod =
-                            PasswordTransformationMethod()
-                    }
-                    binding.eTpasswordActual.setSelection(binding.eTpasswordActual.length())
-                }
                 binding.imgMostrarPaswwordNuevo.id -> {
                     if (binding.eTpasswordNuevo.transformationMethod is PasswordTransformationMethod) {
                         binding.eTpasswordNuevo.transformationMethod = null
@@ -121,7 +127,6 @@ class PerfilActivity : AppCompatActivity(), Validator.ValidationListener {
                     alerDialog.show()
                 }
                 binding.btnGuardarCambios.id -> {
-                    Toast.makeText(this, "Button ", Toast.LENGTH_LONG).show()
                     validator.toValidate()
                 }
 
@@ -199,7 +204,6 @@ class PerfilActivity : AppCompatActivity(), Validator.ValidationListener {
                     // Set the Image in ImageView for Previewing the Media
                     imgPerfil.setImageBitmap(BitmapFactory.decodeFile(mediaPath))
                     cursor.close()
-                    cursor.close()
                     //postPath contiene la ruta de la imagen
                     postPath = mediaPath
                 }catch (e:IOException){
@@ -253,14 +257,14 @@ class PerfilActivity : AppCompatActivity(), Validator.ValidationListener {
             fo.close()
             postPath = f.getAbsolutePath()
             Log.d("TAG", "File Saved::--->" + f.getAbsolutePath())
-        }catch (e: IOException){
+        }catch (e:IOException){
             e.printStackTrace()
         }
         return  ""
     }
 
 
-    fun perfilRetrofit():Retrofit{
+    fun perfilRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(getString(R.string.urlBase))
             .addConverterFactory(GsonConverterFactory.create())
@@ -268,11 +272,85 @@ class PerfilActivity : AppCompatActivity(), Validator.ValidationListener {
     }
 
 
+
     override fun onValidationError() {
-        Toast.makeText(this, "Dattos incorrectos ", Toast.LENGTH_LONG).show()
     }
 
     override fun onValidationSuccess() {
-        Toast.makeText(this, "Todo ok ", Toast.LENGTH_LONG).show()
+        if (binding.eTpasswordNuevo.text.toString().equals(binding.eTpasswordConfir.text.toString())) {
+            doAsync {
+            val nombre = binding.eTnameUsuario.text.toString()
+            val correo = binding.eTemail.text.toString()
+            val nip = binding.eTpasswordNuevo.text.toString()
+            val id = idUser
+            val base: String = "400|" + id + "|" + nombre + "|" + correo + "|" + nip
+            Log.d("TAG", "base64Datos " + base)
+            val encodebase = Base64.encodeToString(base.toByteArray(), Base64.DEFAULT)
+            Log.i("TAG", "Base64Convetido  " + encodebase)
+
+            var photoFile: File? = null
+            photoFile = File(postPath)
+            Log.i("TAG", "urlFinal-- " + postPath)
+            val partes = ArrayList<MultipartBody.Part>()
+            partes.add(MultipartBody.Part.createFormData("word", encodebase))
+            partes.add(MultipartBody.Part.createFormData("archivo", photoFile?.name, photoFile?.crearMultiparte()))
+
+            val call =
+                perfilRetrofit().create(APIService::class.java).actualzarPerfil(partes)?.execute()
+                Log.d("TAG", "Call--- " + call)
+            val result = call.body() as PerfilResponse
+
+            Log.d("TAG", "Resul--- " + result.validoPerfil)
+                uiThread {
+                    if (result.validoPerfil == "1"){
+                        val alertDialog = AlertDialog.Builder(this@PerfilActivity)
+                        alertDialog.setTitle("Alerta")
+                        alertDialog.setMessage(""+result.mensajePerfil)
+                        alertDialog.setPositiveButton("Si"){dialog, which ->
+
+                            val usrImg = result.rutaFotoPerfil
+                            //Guardar datos de datos
+                            val sharedPreferences = getSharedPreferences("my_aplicacion_binding",Context.MODE_PRIVATE)
+                            var editor = sharedPreferences.edit()
+                            editor.putString("usr_Img", usrImg)
+                            editor.commit()
+
+                            binding.eTpasswordNuevo.setText("")
+                            binding.eTpasswordConfir.setText("")
+                        }
+                        val dialog = alertDialog.create()
+                        dialog.show()
+
+                    }else if(result.validoPerfil == "0"){
+                        val alerDialog = AlertDialog.Builder(this@PerfilActivity)
+                        alerDialog.setTitle("Alerta")
+                        alerDialog.setMessage(""+result.mensajePerfil)
+                        alerDialog.setPositiveButton("Si"){dialog, which ->
+
+                        }
+                        val dialog = alerDialog.create()
+                        dialog.show()
+                     }
+                }
+        }
+
+        }else {
+            Toast.makeText(this, "Las contraseñas son diferenes", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+
+    fun File.crearMultiparte(): RequestBody {
+        var type: String? = null
+        val extension = MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(this).toString())
+        if (extension != null) {
+            type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension)
+        }
+        Log.d("ImagenUtil", "uri: " + Uri.fromFile(this))
+        Log.d("ImagenUtil", "type: " + type!!)
+        return RequestBody.create(
+            MediaType.parse("image/*"), this
+        )
     }
 }
