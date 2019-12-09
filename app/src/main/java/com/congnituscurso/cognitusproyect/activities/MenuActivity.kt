@@ -76,6 +76,7 @@ class MenuActivity : AppCompatActivity(), Validator.ValidationListener  {
               binding.reLTareas.id -> {
                   //Toast.makeText(this, "Tareas", Toast.LENGTH_SHORT).show()
                   val inatent = Intent(this, TareasActivity::class.java)
+                  inatent.putExtra("idUser",idUsr)
                   startActivity(inatent)
               }
           }

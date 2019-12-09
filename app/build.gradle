@@ -41,14 +41,21 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-
     //DataBinding
     implementation 'com.github.Ilhasoft:data-binding-validator:2.0.0'
 
     //Retrofit consumo de servico
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    //Anko
     implementation 'org.jetbrains.anko:anko-common:0.9'
+
+    //Interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:3.11.0"
+
+    //RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     //firma
     implementation 'com.github.gcacace:signature-pad:1.2.1'

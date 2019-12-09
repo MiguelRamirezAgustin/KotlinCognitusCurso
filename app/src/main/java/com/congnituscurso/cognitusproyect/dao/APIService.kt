@@ -25,4 +25,7 @@ interface APIService {
     @Multipart
     @POST("GeneralData")
     fun actualzarPerfil(@Part partMaps: List<MultipartBody.Part>):Call<PerfilResponse>
+
+    @POST("GeneralData")
+    fun tareasGet(@Query("word")paramGetTareas:String):Call<TareasResponse>
 }

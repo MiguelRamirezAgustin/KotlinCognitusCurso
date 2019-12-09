@@ -82,7 +82,7 @@
                    android:textSize="@dimen/dimenTexGeneral"
                    android:textColor="@color/colorBlanco"
                    android:singleLine="true"
-                   android:text="agustin@gmail.com"
+                   android:text="juan@hotmal.com"
                    android:paddingLeft="16dp"
                    android:maxLength="25"
                    android:drawablePadding="8dp"
