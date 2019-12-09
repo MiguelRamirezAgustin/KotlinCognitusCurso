@@ -77,18 +77,37 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:layout_marginRight="8dp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/rectangle"
+                android:layout_marginTop="9dp">
+
+                <TextView
                 android:id="@+id/tVHoras"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
                 android:textColor="@color/colorBlanco"
+                    android:layout_marginLeft="4dp"
                 android:gravity="center"
-                tool:text="@{elemento.tarea_hrs}"
-                android:background="@drawable/rectangle"/>
+                tool:text="@{elemento.tarea_hrs}"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="hr"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorBlanco"
+                    android:layout_marginRight="5dp"/>
+
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/tvTexto"

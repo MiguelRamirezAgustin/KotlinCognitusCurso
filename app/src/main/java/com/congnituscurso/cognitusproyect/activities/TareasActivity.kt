@@ -1,5 +1,6 @@
 package com.congnituscurso.cognitusproyect.activities
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
@@ -21,6 +22,7 @@ class TareasActivity : AppCompatActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     lateinit var noticias:List<Tarea>
     var encodeValue:String?= null
+    var idUsr:String?= null
 
 
     private val binding by lazy {
@@ -31,10 +33,14 @@ class TareasActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_tareas)
 
-        val idUser = intent.getStringExtra("idUser")
-        Log.d("TAG","idUserTareas "+ idUser)
 
-        val testValue:String ="500|" + idUser
+        //recupera id de sharedPreferences
+        val sharedPreferences=getSharedPreferences("my_aplicacion_binding", Context.MODE_PRIVATE)
+        val usrId = sharedPreferences.getString("usr_id","")
+        idUsr = usrId
+        Log.i("TAG","id user "+"->${idUsr}")
+
+        val testValue:String ="500|" + idUsr
         encodeValue = Base64.encodeToString(testValue.toByteArray(),Base64.DEFAULT)
         Log.i("TAG","Base64Tareas "+"->${encodeValue}")
 

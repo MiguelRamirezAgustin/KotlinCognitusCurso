@@ -20,7 +20,7 @@
     <string name="txtGuardadCambios">Guardar Cambios</string>
     <string name="txtAceptoTerminos">Acepto términos y condiciones</string>
     <string name="txtGuardar">Guardar</string>
-    <string name="txtTerminos">Terminar </string>
+    <string name="txtTerminar">Terminar </string>
     <string name="txtHorasTrabajadas">Horas trabajadas</string>
     <string name="txtNota">Nota</string>
     <string name="validaEmail">Debe usar un correo valido</string>
@@ -29,6 +29,8 @@
 
 
     //databinding
+    <string name="horasValidar">Es necesario ingresar una valor</string>
+    <string name="horasValidarNotas">Es necesario ingresar una nota</string>
     <string name="firmaValidar">Es necesario realizar la firma</string>
     <string name="emptyMessage">Es necesarios realizar check in para la hora de entrada</string>
 

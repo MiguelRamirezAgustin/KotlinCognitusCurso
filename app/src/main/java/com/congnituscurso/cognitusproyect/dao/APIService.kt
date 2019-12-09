@@ -28,4 +28,11 @@ interface APIService {
 
     @POST("GeneralData")
     fun tareasGet(@Query("word")paramGetTareas:String):Call<TareasResponse>
+
+    @POST("GeneralData")
+    fun tareaGuardar(@Query("word")pararGuardarTarea:String):Call<TareasGuardarResponse>
+
+
+    @POST("GeneralData")
+    fun tareaFinalizar(@Query("word")pararGuardarTarea:String):Call<TareaFinalizarResponse>
 }
