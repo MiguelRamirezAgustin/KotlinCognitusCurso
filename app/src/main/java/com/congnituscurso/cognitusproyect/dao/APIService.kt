@@ -35,4 +35,12 @@ interface APIService {
 
     @POST("GeneralData")
     fun tareaFinalizar(@Query("word")pararGuardarTarea:String):Call<TareaFinalizarResponse>
+
+
+    @POST("GeneralData")
+    fun notificacion(@Query("word")pararNotificacion:String):Call<NotificacionResponse>
+
+
+    @POST("GeneralData")
+    fun notificacionLeer(@Query("word")pararNotificacionLeer:String):Call<NotificacionLeerResponse>
 }

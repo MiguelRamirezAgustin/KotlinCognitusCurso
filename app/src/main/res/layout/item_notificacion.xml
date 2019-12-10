@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="elementos"
+            type="com.congnituscurso.cognitusproyect.model.response.Notificacion" />
+
+        <variable
+            name="posicion"
+            type="int"/>
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/carta_7"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:id="@+id/iMNotificacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ellipse_1"
+                android:paddingLeft="15dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/tVTituloNotificacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="titulo"
+                android:paddingLeft="20dp"
+                android:textColor="@color/colorPrimary"
+                tool:text="@{elementos.not_titulo}"
+                android:textSize="@dimen/dimenMenu"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tVContenidoNotificacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dimenDetalles"
+            android:text="fsdfdsfdfsfd"
+            android:paddingLeft="10dp"
+            tool:text="@{elementos.not_desc}"
+            android:layout_marginTop="9dp"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</layout>
