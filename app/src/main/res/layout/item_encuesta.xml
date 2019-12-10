@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="elemento"
+            type="com.congnituscurso.cognitusproyect.model.response.Encuesta" />
+
+        <variable
+            name="posicion"
+            type="int" />
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/linearGeneral"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical"
+        android:tag="@{posicion}">
+
+
+        <!--Pregunta 1-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_2"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:paddingLeft="12dp"
+                android:text="Pregunta 1"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/dimenMenu" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorGris" />
+
+            <TextView
+                android:id="@+id/tVPreguntaUno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:text="dsdds"
+                tool:text="@{elemento.cpreg_titulo}"
+                android:textColor="@color/colorGris"
+                android:textSize="@dimen/dimenDetalles" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/nombre">
+
+                <EditText
+                    android:id="@+id/eTemail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@android:color/transparent"
+                    android:hint="@string/txtRespuesta"
+                    android:paddingLeft="16dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/colorGris"
+                    android:textSize="@dimen/dimenTexGeneral" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <!--Pregunta 2-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/card_2"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:paddingLeft="12dp"
+                android:text="Pregunta 2"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/dimenMenu" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorGris" />
+
+            <TextView
+                android:id="@+id/tVPreguntaDos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:text="dsdds"
+                android:textColor="@color/colorGris"
+                android:textSize="@dimen/dimenDetalles" />
+
+        </LinearLayout>
+
+        <!--Pregunta 3-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/card_2"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:paddingLeft="12dp"
+                android:text="Pregunta 3"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/dimenMenu" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorGris" />
+
+            <TextView
+                android:id="@+id/tVPreguntaTres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:text="dsdds"
+                android:textColor="@color/colorGris"
+                android:textSize="@dimen/dimenDetalles" />
+
+        </LinearLayout>
+
+
+        <!--Pregunta 4-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/card_2"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:paddingLeft="12dp"
+                android:text="Pregunta 4"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/dimenMenu" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorGris" />
+
+            <TextView
+                android:id="@+id/tVPreguntaCuatro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="10dp"
+                android:text="dsdds"
+                android:textColor="@color/colorGris"
+                android:textSize="@dimen/dimenDetalles" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

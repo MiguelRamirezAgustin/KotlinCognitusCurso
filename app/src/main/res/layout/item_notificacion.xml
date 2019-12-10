@@ -39,7 +39,7 @@
                 android:id="@+id/iMNotificacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ellipse_1"
+                android:src="@drawable/ellipse_11"
                 android:paddingLeft="15dp"
                 android:layout_gravity="center"/>
 

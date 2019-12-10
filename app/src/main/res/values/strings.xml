@@ -33,6 +33,7 @@
     <string name="horasValidarNotas">Es necesario ingresar una nota</string>
     <string name="firmaValidar">Es necesario realizar la firma</string>
     <string name="emptyMessage">Es necesarios realizar check in para la hora de entrada</string>
+    <string name="txtRespuesta">Respuesta</string>
 
 
     //Menu

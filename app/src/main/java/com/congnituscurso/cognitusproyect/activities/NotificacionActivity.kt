@@ -15,6 +15,7 @@ import com.congnituscurso.cognitusproyect.dao.APIService
 import com.congnituscurso.cognitusproyect.databinding.ActivityNotificacionBinding
 import com.congnituscurso.cognitusproyect.databinding.ActivityTareasBinding
 import com.congnituscurso.cognitusproyect.model.NotificacionResponse
+import kotlinx.android.synthetic.main.item_notificacion.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import retrofit2.Retrofit
@@ -37,6 +38,7 @@ class NotificacionActivity : AppCompatActivity() {
         //recupera id de sharedPreferences
         val sharedPreferences=getSharedPreferences("my_aplicacion_binding", Context.MODE_PRIVATE)
         val usrId = sharedPreferences.getString("usr_id","")
+
         idUsr = usrId
         Log.i("TAG","id user Notificaciones "+"->${idUsr}")
 
@@ -46,24 +48,23 @@ class NotificacionActivity : AppCompatActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setDisplayShowHomeEnabled(true)
         }
-        getnotificacion()
+        getnotificacion(idUsr.toString())
 
 
     }
 
-    private fun getnotificacion(){
+    private fun getnotificacion(idUsr:String){
      doAsync {
          val testValue:String ="300|" + idUsr
          val encodeValue = Base64.encodeToString(testValue.toByteArray(), Base64.DEFAULT)
          Log.i("TAG","Base64Notificacion "+"->${encodeValue}")
          val call = notificaionRetrofit().create(APIService::class.java).notificacion(encodeValue)?.execute()
          val result = call.body() as NotificacionResponse
-         Log.d("TAG", "ResulNotificacion "+ result.validoNotificacion)
          uiThread {
              if (result.validoNotificacion =="1"){
                  linearLayoutManager = LinearLayoutManager(applicationContext)
                  binding.rvNotificacion.layoutManager = linearLayoutManager
-                 binding.rvNotificacion.adapter = NotificaionAdaper(result.notificaciones)
+                 binding.rvNotificacion.adapter = NotificaionAdaper(result.notificaciones, idUsr)
              }
              else if(result.validoNotificacion =="0"){
                val alerDialog = AlertDialog.Builder(applicationContext)

@@ -43,4 +43,8 @@ interface APIService {
 
     @POST("GeneralData")
     fun notificacionLeer(@Query("word")pararNotificacionLeer:String):Call<NotificacionLeerResponse>
+
+
+    @POST("GeneralData")
+    fun encuesta(@Query("word")pararEncuesta:String):Call<EncuestaResponse>
 }

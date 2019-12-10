@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -8,7 +7,7 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvNotificacion"
+            android:id="@+id/rvEncuesta"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"/>

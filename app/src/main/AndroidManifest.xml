@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-
         <!-- [END firebase_service] 01 -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
@@ -54,8 +53,12 @@
         <activity
             android:name=".activities.WebViewTerminosActivity"
             android:parentActivityName=".activities.RegistroActivity" />
-        <activity android:name=".activities.RealizarTareaActivity"
-            android:parentActivityName=".activities.TareasActivity"/>
+        <activity
+            android:name=".activities.RealizarTareaActivity"
+            android:parentActivityName=".activities.TareasActivity" />
+
+        <activity android:name=".activities.EncuestaActivity"
+            android:parentActivityName=".activities.MenuActivity"/>
         <!-- [END firebase_service] 02 -->
         <service android:name=".model.push.MyFirebaseMessagingService">
             <intent-filter>

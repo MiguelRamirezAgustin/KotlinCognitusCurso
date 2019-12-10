@@ -300,7 +300,8 @@ class PerfilActivity : AppCompatActivity(), Validator.ValidationListener {
                 Log.d("TAG", "Call--- " + call)
             val result = call.body() as PerfilResponse
 
-            Log.d("TAG", "Resul--- " + result.validoPerfil)
+                Log.d("TAG", "Resul--- " + result.validoPerfil)
+                Log.d("TAG", "ResulImg--- " + result.rutaFotoPerfil)
                 uiThread {
                     if (result.validoPerfil == "1"){
                         val alertDialog = AlertDialog.Builder(this@PerfilActivity)
