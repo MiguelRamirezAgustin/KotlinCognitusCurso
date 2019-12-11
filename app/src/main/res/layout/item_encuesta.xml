@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tool="http://schemas.android.com/tools">
+    xmlns:tool="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -22,14 +23,14 @@
         android:id="@+id/linearGeneral"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical"
         android:tag="@{posicion}">
 
 
-        <!--Pregunta 1-->
+        <!--Pregunta -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,33 +38,34 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tVPregunta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:paddingLeft="12dp"
-                android:text="Pregunta 1"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/dimenMenu" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="3dp"
                 android:background="@color/colorGris" />
 
+            <!--Pregunta validacion-->
             <TextView
-                android:id="@+id/tVPreguntaUno"
+                android:id="@+id/tVPreguntas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
-                android:text="dsdds"
                 tool:text="@{elemento.cpreg_titulo}"
                 android:textColor="@color/colorGris"
-                android:textSize="@dimen/dimenDetalles" />
+                android:textSize="@dimen/dimenTexPreguntaEncuesta" />
 
             <LinearLayout
+                android:id="@+id/liLPregunta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -72,7 +74,7 @@
                 android:background="@drawable/nombre">
 
                 <EditText
-                    android:id="@+id/eTemail"
+                    android:id="@+id/eTPregunta"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="@android:color/transparent"
@@ -80,120 +82,95 @@
                     android:paddingLeft="16dp"
                     android:textColor="@color/colorPrimary"
                     android:textColorHint="@color/colorGris"
+                    app:validateMinLength="@{3}"
+                    app:validateMaxLength="@{25}"
+                    validateEmpty="@{true}"
+                    app:validateEmptyMessage="@{@string/Message}"
                     android:textSize="@dimen/dimenTexGeneral" />
             </LinearLayout>
-        </LinearLayout>
 
+           <RatingBar
+               android:layout_marginTop="-50dp"
+               android:id="@+id/rBar"
+               android:layout_gravity="center"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:onClick="@{(v) -> clickListener.onClick(v)}"/>
 
-        <!--Pregunta 2-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:background="@drawable/card_2"
-            android:orientation="vertical">
-
-            <TextView
+            <RadioGroup
+                android:id="@+id/radioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:paddingLeft="12dp"
-                android:text="Pregunta 2"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/dimenMenu" />
+                android:orientation="horizontal"
+                android:layout_marginTop="-50dp"
+                android:layout_gravity="center"
+                android:onClick="@{(v) -> clickListener.onClick(v)}">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="2dp"
-                android:background="@color/colorGris" />
+                <RadioButton
+                    android:id="@+id/raBSI"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="SI"
+                    android:paddingLeft="20dp"
+                    android:textSize="20sp"
+                    android:layout_marginRight="25dp"
+                    android:onClick="@{(v) -> clickListener.onClick(v)}"/>
 
-            <TextView
-                android:id="@+id/tVPreguntaDos"
+                <RadioButton
+                    android:id="@+id/raBNO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:textSize="20sp"
+                    android:text="No"
+                    android:onClick="@{(v) -> clickListener.onClick(v)}"/>
+
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/liCheckBox"
+                android:layout_marginTop="-55dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp"
-                android:text="dsdds"
-                android:textColor="@color/colorGris"
-                android:textSize="@dimen/dimenDetalles" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="10dp">
+
+
+                <CheckBox
+                    android:id="@+id/checkBox1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tool:text="@{elemento.respuestas[0].cresp_desc}"
+                    android:onClick="@{(v) -> clickListener.onClick(v)}"/>
+
+
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tool:text="@{elemento.respuestas[1].cresp_desc}"
+                    android:onClick="@{(v) -> clickListener.onClick(v)}"/>
+
+
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tool:text="@{elemento.respuestas[2].cresp_desc}"/>
+
+
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tool:text="@{elemento.respuestas[3].cresp_desc}"
+                    android:onClick="@{(v) -> clickListener.onClick(v)}"/>
+
+            </LinearLayout>
+
 
         </LinearLayout>
-
-        <!--Pregunta 3-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:background="@drawable/card_2"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:paddingLeft="12dp"
-                android:text="Pregunta 3"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/dimenMenu" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="2dp"
-                android:background="@color/colorGris" />
-
-            <TextView
-                android:id="@+id/tVPreguntaTres"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp"
-                android:text="dsdds"
-                android:textColor="@color/colorGris"
-                android:textSize="@dimen/dimenDetalles" />
-
-        </LinearLayout>
-
-
-        <!--Pregunta 4-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:background="@drawable/card_2"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:paddingLeft="12dp"
-                android:text="Pregunta 4"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/dimenMenu" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="2dp"
-                android:background="@color/colorGris" />
-
-            <TextView
-                android:id="@+id/tVPreguntaCuatro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp"
-                android:text="dsdds"
-                android:textColor="@color/colorGris"
-                android:textSize="@dimen/dimenDetalles" />
-
-        </LinearLayout>
-
 
     </LinearLayout>
+
 </layout>

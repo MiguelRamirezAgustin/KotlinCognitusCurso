@@ -11,6 +11,7 @@
     <string name="txtCerrarSesion">Cerrar Sesión</string>
     <string name="txtHoraEntrad">Hora de entrada</string>
     <string name="txtConfirmar">Confirmar</string>
+    <string name="txtSiguiente">Siguiente</string>
     <string name="txtFirma">Firma</string>
     <string name="txtCorreo">Correo</string>
     <string name="txtRecuperar">Recuperar</string>

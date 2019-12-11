@@ -47,4 +47,8 @@ interface APIService {
 
     @POST("GeneralData")
     fun encuesta(@Query("word")pararEncuesta:String):Call<EncuestaResponse>
+
+
+    @POST("GeneralData")
+    fun encuestaEnviar(@Query("word")pararEncuestaEnviar:String):Call<EncuestaEnviarResponse>
 }

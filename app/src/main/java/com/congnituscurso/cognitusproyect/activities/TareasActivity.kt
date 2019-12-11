@@ -20,14 +20,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class TareasActivity : AppCompatActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
-    lateinit var noticias:List<Tarea>
-    var encodeValue:String?= null
-    var idUsr:String?= null
+    lateinit var noticias: List<Tarea>
+    var encodeValue: String? = null
+    var idUsr: String? = null
 
 
     private val binding by lazy {
         DataBindingUtil.setContentView<ActivityTareasBinding>(this, R.layout.activity_tareas)
-     }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,18 +35,18 @@ class TareasActivity : AppCompatActivity() {
 
 
         //recupera id de sharedPreferences
-        val sharedPreferences=getSharedPreferences("my_aplicacion_binding", Context.MODE_PRIVATE)
-        val usrId = sharedPreferences.getString("usr_id","")
+        val sharedPreferences = getSharedPreferences("my_aplicacion_binding", Context.MODE_PRIVATE)
+        val usrId = sharedPreferences.getString("usr_id", "")
         idUsr = usrId
-        Log.i("TAG","id user "+"->${idUsr}")
+        Log.i("TAG", "id user " + "->${idUsr}")
 
-        val testValue:String ="500|" + idUsr
-        encodeValue = Base64.encodeToString(testValue.toByteArray(),Base64.DEFAULT)
-        Log.i("TAG","Base64Tareas "+"->${encodeValue}")
+        val testValue: String = "500|" + idUsr
+        encodeValue = Base64.encodeToString(testValue.toByteArray(), Base64.DEFAULT)
+        Log.i("TAG", "Base64Tareas " + "->${encodeValue}")
 
         val actionBar = supportActionBar
-        if(actionBar != null){
-            actionBar.title="Tareas"
+        if (actionBar != null) {
+            actionBar.title = "Tareas"
             actionBar.setDisplayShowHomeEnabled(true)
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
@@ -56,13 +56,14 @@ class TareasActivity : AppCompatActivity() {
 
     private fun getValueWS() {
         doAsync {
-            val call = tareasRetrofit().create(APIService::class.java).tareasGet(encodeValue!!).execute()
+            val call =
+                tareasRetrofit().create(APIService::class.java).tareasGet(encodeValue!!).execute()
             val message = call.body() as TareasResponse
-            Log.d("TAG", "response tareas "+message.valido)
+            Log.d("TAG", "response tareas " + message.valido)
             uiThread {
                 linearLayoutManager = LinearLayoutManager(applicationContext)
                 binding.rvTareas.layoutManager = linearLayoutManager
-                binding.rvTareas.adapter = TareasAdapter( message.tareas)
+                binding.rvTareas.adapter = TareasAdapter(message.tareas)
             }
         }
     }
